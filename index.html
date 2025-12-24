@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>大數據與資訊視覺化 | 期末成果展</title>
     
+    <!-- 1. 引入 Google 專業字體 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
     
+    <!-- 2. 引入 Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- 3. 引入 Font Awesome (圖標庫) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -41,20 +44,43 @@
         }
         .navbar-brand i { margin-right: 10px; color: var(--accent-color); }
 
-        /* 輪播區塊 */
+        /* --- 輪播區塊優化 (針對 A3 圖片) --- */
         .carousel-container {
             margin-top: 30px;
             margin-bottom: 50px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* 立體陰影 */
-        }
-        .carousel-item img {
-            height: 450px; /* 固定高度，讓畫面整齊 */
-            object-fit: cover;
+            padding: 10px;
         }
         
-        /* 專案卡片區塊 */
+        .carousel-item img {
+            width: 100%;       /* 寬度填滿設定的容器 */
+            height: auto;      /* 高度自動，保持 A3 比例不變形 */
+            object-fit: contain; /* 確保圖片完整顯示 */
+            
+            /* 增加海報質感設計 */
+            border: 8px solid white; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* 較深的陰影 */
+            border-radius: 4px;
+        }
+
+        /* 調整下方指示點的位置，避免擋到圖片內容 */
+        .carousel-indicators {
+            bottom: -40px; 
+        }
+        .carousel-indicators button {
+            background-color: var(--primary-color) !important;
+            height: 4px;
+        }
+        
+        /* 左右切換按鈕改成深色，避免在白邊上看不見 */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(44, 62, 80, 0.5); /* 半透明深藍底 */
+            border-radius: 50%;
+            padding: 20px;
+            background-size: 50% 50%;
+        }
+
+        /* --- 專案卡片樣式 --- */
         .section-header {
             border-left: 5px solid var(--accent-color);
             padding-left: 15px;
@@ -72,7 +98,7 @@
             height: 100%;
         }
         .project-card:hover {
-            transform: translateY(-8px); /* 懸浮效果 */
+            transform: translateY(-8px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         .card-body { padding: 25px; }
@@ -87,7 +113,7 @@
         }
         .student-names i { margin-right: 8px; color: var(--accent-color); }
 
-        /* 按鈕樣式優化 */
+        /* 按鈕樣式 */
         .btn-custom {
             background-color: white;
             color: var(--primary-color);
@@ -99,7 +125,7 @@
             background-color: var(--primary-color);
             color: white;
         }
-        /* 另一種強調樣式的按鈕 */
+        
         .btn-custom-primary {
             background-color: var(--primary-color);
             color: white;
@@ -121,6 +147,7 @@
 </head>
 <body>
 
+    <!-- 頂部標題列 -->
     <nav class="navbar navbar-custom">
         <div class="container text-center justify-content-center">
             <span class="navbar-brand">
@@ -131,10 +158,15 @@
 
     <div class="container">
 
+        <!-- ==================== 01-09 圖片輪播區 Start ==================== -->
+        <!-- 這裡使用 col-lg-7 (約60%寬度) 來限制顯示大小，讓A3圖片不會過大 -->
         <div class="row justify-content-center">
-            <div class="col-lg-10">
+            <div class="col-lg-7 col-md-9"> 
                 <div class="carousel-container">
-                    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"> <div class="carousel-indicators">
+                    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"> 
+                        
+                        <!-- 1. 下方指示條 (0-8, 共9個) -->
+                        <div class="carousel-indicators">
                             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
                             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
                             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
@@ -146,18 +178,20 @@
                             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="8"></button>
                         </div>
 
+                        <!-- 2. 圖片內容 (確保您的 images 資料夾有 01.jpg 到 09.jpg) -->
                         <div class="carousel-inner">
-                            <div class="carousel-item active"> <img src="01.jpg" class="d-block w-100" alt="Slide 1"> </div>
-                            <div class="carousel-item"> <img src="02.jpg" class="d-block w-100" alt="Slide 2"> </div>
-                            <div class="carousel-item"> <img src="03.jpg" class="d-block w-100" alt="Slide 3"> </div>
-                            <div class="carousel-item"> <img src="04.jpg" class="d-block w-100" alt="Slide 4"> </div>
-                            <div class="carousel-item"> <img src="05.jpg" class="d-block w-100" alt="Slide 5"> </div>
-                            <div class="carousel-item"> <img src="06.jpg" class="d-block w-100" alt="Slide 6"> </div>
-                            <div class="carousel-item"> <img src="07.jpg" class="d-block w-100" alt="Slide 7"> </div>
-                            <div class="carousel-item"> <img src="08.jpg" class="d-block w-100" alt="Slide 8"> </div>
-                            <div class="carousel-item"> <img src="09.jpg" class="d-block w-100" alt="Slide 9"> </div>
+                            <div class="carousel-item active"> <img src="01.jpg" alt="Slide 1"> </div>
+                            <div class="carousel-item"> <img src="02.jpg" alt="Slide 2"> </div>
+                            <div class="carousel-item"> <img src="03.jpg" alt="Slide 3"> </div>
+                            <div class="carousel-item"> <img src="04.jpg" alt="Slide 4"> </div>
+                            <div class="carousel-item"> <img src="05.jpg" alt="Slide 5"> </div>
+                            <div class="carousel-item"> <img src="06.jpg" alt="Slide 6"> </div>
+                            <div class="carousel-item"> <img src="07.jpg" alt="Slide 7"> </div>
+                            <div class="carousel-item"> <img src="08.jpg" alt="Slide 8"> </div>
+                            <div class="carousel-item"> <img src="09.jpg" alt="Slide 9"> </div>
                         </div>
 
+                        <!-- 3. 左右切換鍵 -->
                         <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon"></span>
                         </button>
@@ -168,9 +202,16 @@
                 </div>
             </div>
         </div>
+        <!-- ==================== 圖片輪播區 End ==================== -->
+
+
+        <!-- 專案列表區 -->
         <h3 class="section-header"><i class="fas fa-folder-open me-2"></i>學生專案列表</h3>
 
-        <div class="row g-4"> <div class="col-md-6 mb-2">
+        <div class="row g-4 mb-5">
+            
+            <!-- 專案 1 -->
+            <div class="col-md-6 mb-2">
                 <div class="project-card h-100">
                     <div class="card-body text-center d-flex flex-column">
                         <div class="student-names">
@@ -184,6 +225,7 @@
                 </div>
             </div>
 
+            <!-- 專案 2 -->
             <div class="col-md-6 mb-2">
                 <div class="project-card h-100">
                     <div class="card-body text-center d-flex flex-column">
@@ -198,6 +240,7 @@
                 </div>
             </div>
                 
+            <!-- 專案 3 -->
             <div class="col-md-6 mb-2">
                 <div class="project-card h-100">
                     <div class="card-body text-center d-flex flex-column">
@@ -212,6 +255,7 @@
                 </div>
              </div>
             
+            <!-- 專案 4 -->
             <div class="col-md-6 mb-2">
                 <div class="project-card h-100">
                     <div class="card-body text-center d-flex flex-column">
@@ -226,6 +270,7 @@
                 </div>
              </div>
 
+            <!-- 專案 5 -->
             <div class="col-md-6 mb-2">
                 <div class="project-card h-100">
                     <div class="card-body text-center d-flex flex-column">
@@ -240,6 +285,7 @@
                 </div>
              </div>
             
+            <!-- 專案 6 -->
             <div class="col-md-6 mb-2">
                 <div class="project-card h-100">
                     <div class="card-body text-center d-flex flex-column">
@@ -254,6 +300,7 @@
                 </div>
              </div>
             
+            <!-- 專案 7 -->
             <div class="col-md-6 mb-2">
                 <div class="project-card h-100">
                     <div class="card-body text-center d-flex flex-column">
@@ -268,6 +315,7 @@
                 </div>
              </div>
             
+            <!-- 專案 8 -->
             <div class="col-md-6 mb-2">
                 <div class="project-card h-100">
                     <div class="card-body text-center d-flex flex-column">
@@ -282,13 +330,17 @@
                 </div>
              </div>
 
-        </div> </div> <footer>
+        </div> <!-- End Row -->
+    </div> <!-- End Container -->
+
+    <footer>
         <div class="container text-center">
             <p>&copy; 2025 大數據與資訊視覺化課程成果展</p>
             <small style="opacity: 0.5;">Designed with Bootstrap 5 & FontAwesome</small>
         </div>
     </footer>
 
+    <!-- Bootstrap JS (必要) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
