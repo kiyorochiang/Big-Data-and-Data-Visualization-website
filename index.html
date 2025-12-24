@@ -1,256 +1,295 @@
 <!DOCTYPE html>
-
 <html lang="zh-TW">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>大數據與資訊視覺化</title>
-
+    <title>大數據與資訊視覺化 | 期末成果展</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* --- 科技感樣式設定 --- */
+        :root {
+            --primary-color: #2c3e50; /* 深藍色 */
+            --accent-color: #3498db;  /* 亮藍色 */
+            --bg-color: #f4f6f9;      /* 儀表板淺灰底 */
+        }
 
-        /* 這裡可以微調樣式 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+        }
 
-        body { background-color: #f8f9fa; }
+        /* 頂部導覽列 */
+        .navbar-custom {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            color: white !important;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 1.5rem;
+        }
+        .navbar-brand i { margin-right: 10px; color: var(--accent-color); }
 
-        .header-section { background-color: #343a40; color: white; padding: 40px 0; margin-bottom: 30px; }
+        /* 輪播區塊 */
+        .carousel-container {
+            margin-top: 30px;
+            margin-bottom: 50px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* 立體陰影 */
+        }
+        .carousel-item img {
+            height: 450px; /* 固定高度，讓畫面整齊 */
+            object-fit: cover;
+        }
+        
+        /* 專案卡片區塊 */
+        .section-header {
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
 
-        .card { transition: transform 0.2s; border: none; }
+        .project-card {
+            border: none;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .project-card:hover {
+            transform: translateY(-8px); /* 懸浮效果 */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .card-body { padding: 25px; }
+        
+        .student-names {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .student-names i { margin-right: 8px; color: var(--accent-color); }
 
-        .card:hover { transform: translateY(-5px); } /* 滑鼠移過去會浮起來 */
+        /* 按鈕樣式優化 */
+        .btn-custom {
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .btn-custom:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        /* 另一種強調樣式的按鈕 */
+        .btn-custom-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-color);
+        }
+        .btn-custom-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
 
+        /* 頁尾 */
+        footer {
+            background-color: var(--primary-color);
+            color: rgba(255,255,255,0.7);
+            padding: 30px 0;
+            margin-top: 60px;
+        }
     </style>
-
 </head>
-
 <body>
 
-
-
-    <div class="header-section text-center">
-
-        <h1>大數據與資訊視覺化</h1>
-
-        <p>點擊按鈕即可閱讀同學的完整簡報</p>
-
-    </div>
-
-
+    <nav class="navbar navbar-custom">
+        <div class="container text-center justify-content-center">
+            <span class="navbar-brand">
+                <i class="fas fa-chart-pie"></i>大數據與資訊視覺化期末展
+            </span>
+        </div>
+    </nav>
 
     <div class="container">
 
-        <div class="row">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="carousel-container">
+                    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"> <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+                            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3"></button>
+                            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="4"></button>
+                            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="5"></button>
+                            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="6"></button>
+                            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="7"></button>
+                            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="8"></button>
+                        </div>
 
-            
+                        <div class="carousel-inner">
+                            <div class="carousel-item active"> <img src="images/01.jpg" class="d-block w-100" alt="Slide 1"> </div>
+                            <div class="carousel-item"> <img src="images/02.jpg" class="d-block w-100" alt="Slide 2"> </div>
+                            <div class="carousel-item"> <img src="images/03.jpg" class="d-block w-100" alt="Slide 3"> </div>
+                            <div class="carousel-item"> <img src="images/04.jpg" class="d-block w-100" alt="Slide 4"> </div>
+                            <div class="carousel-item"> <img src="images/05.jpg" class="d-block w-100" alt="Slide 5"> </div>
+                            <div class="carousel-item"> <img src="images/06.jpg" class="d-block w-100" alt="Slide 6"> </div>
+                            <div class="carousel-item"> <img src="images/07.jpg" class="d-block w-100" alt="Slide 7"> </div>
+                            <div class="carousel-item"> <img src="images/08.jpg" class="d-block w-100" alt="Slide 8"> </div>
+                            <div class="carousel-item"> <img src="images/09.jpg" class="d-block w-100" alt="Slide 9"> </div>
+                        </div>
 
-            <div class="col-md-6 mb-4">
-
-                <div class="card shadow-sm h-100 p-3">
-
-                    <div class="card-body text-center">
-
-                        <h4 class="mb-3">蕭啟之、王彥旻、詹蕙瑜</h4>
-
-                        <a href="https://drive.google.com/file/d/1BWAruiKn4iNRe9b48ANEVe565VEZfpRl/view?usp=sharing" 
-
-                           target="_blank" 
-
-                           class="btn btn-primary w-100 py-2">
-
-                         2024年世界12強棒球賽媒體敘事分析——以聯合新聞網、中時新聞網、自由時報電子報為例
-
-                        </a>
-
+                        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
                     </div>
-
                 </div>
+            </div>
+        </div>
+        <h3 class="section-header"><i class="fas fa-folder-open me-2"></i>學生專案列表</h3>
 
+        <div class="row g-4"> <div class="col-md-6 mb-2">
+                <div class="project-card h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="student-names">
+                            <i class="fas fa-users"></i> 蕭啟之、王彥旻、詹蕙瑜
+                        </div>
+                        <h5 class="card-title mb-4 flex-grow-1">2024年世界12強棒球賽媒體敘事分析——以聯合新聞網、中時新聞網、自由時報電子報為例</h5>
+                        <a href="https://drive.google.com/file/d/1BWAruiKn4iNRe9b48ANEVe565VEZfpRl/view?usp=sharing" target="_blank" class="btn btn-custom-primary w-100 py-2">
+                           <i class="fas fa-file-pdf me-2"></i>閱讀完整報告
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-md-6 mb-4">
-
-                <div class="card shadow-sm h-100 p-3">
-
-                    <div class="card-body text-center">
-
-                        <h4 class="mb-3">許芷瑜、洪賢幸、廖品惠</h4>
-
-                        <a href="https://drive.google.com/file/d/1rcFSmbXeTFdMfqaWReh8X6nbCmhJnXyJ/view?usp=sharing" 
-
-                           target="_blank" 
-
-                           class="btn btn-outline-primary w-100 py-2">
-
-                          台灣旅客遊日之過度觀光行為
-
+            <div class="col-md-6 mb-2">
+                <div class="project-card h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="student-names">
+                            <i class="fas fa-users"></i> 許芷瑜、洪賢幸、廖品惠
+                        </div>
+                        <h5 class="card-title mb-4 flex-grow-1">台灣旅客遊日之過度觀光行為</h5>
+                        <a href="https://drive.google.com/file/d/1rcFSmbXeTFdMfqaWReh8X6nbCmhJnXyJ/view?usp=sharing" target="_blank" class="btn btn-custom w-100 py-2">
+                            <i class="fas fa-file-pdf me-2"></i>閱讀完整報告
                         </a>
-
                     </div>
-
                 </div>
-           </div>
+            </div>
                 
-
-            <div class="col-md-6 mb-4">
-
-                <div class="card shadow-sm h-100 p-3">
-
-                    <div class="card-body text-center">
-
-                        <h4 class="mb-3">謝宜杰、王璟、鄭翊杉</h4>
-
-                        <a href="https://drive.google.com/file/d/1MLHWJvq2V6Nm0ANQfd1r4oNEwyTQrysX/view?usp=sharing" 
-
-                           target="_blank" 
-
-                           class="btn btn-outline-primary w-100 py-2">
-
-                         危機中的敘事：從大數據視角檢視飛航事故的媒體再現——以《聯合新聞網》為例
-
+            <div class="col-md-6 mb-2">
+                <div class="project-card h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="student-names">
+                            <i class="fas fa-users"></i> 謝宜杰、王璟、鄭翊杉
+                        </div>
+                        <h5 class="card-title mb-4 flex-grow-1">危機中的敘事：從大數據視角檢視飛航事故的媒體再現——以《聯合新聞網》為例</h5>
+                        <a href="https://drive.google.com/file/d/1MLHWJvq2V6Nm0ANQfd1r4oNEwyTQrysX/view?usp=sharing" target="_blank" class="btn btn-custom w-100 py-2">
+                            <i class="fas fa-file-pdf me-2"></i>閱讀完整報告
                         </a>
-
                     </div>
-
                 </div>
-    
              </div>
-            <div class="col-md-6 mb-4">
-
-                <div class="card shadow-sm h-100 p-3">
-
-                    <div class="card-body text-center">
-
-                        <h4 class="mb-3">廖苡彣、翁志婷、呂知亭、林祐麒</h4>
-
-                        <a href="https://drive.google.com/file/d/1MzeszkPu9UPjaSeCWmZ41mJgJ4tt-NWD/view?usp=sharing" 
-
-                           target="_blank" 
-
-                           class="btn btn-outline-primary w-100 py-2">
-
-                        臺灣綠色商店十年變遷:分布、密度與政策影響之分析
-
+            
+            <div class="col-md-6 mb-2">
+                <div class="project-card h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="student-names">
+                            <i class="fas fa-users"></i> 廖苡彣、翁志婷、呂知亭、林祐麒
+                        </div>
+                        <h5 class="card-title mb-4 flex-grow-1">臺灣綠色商店十年變遷:分布、密度與政策影響之分析</h5>
+                        <a href="https://drive.google.com/file/d/1MzeszkPu9UPjaSeCWmZ41mJgJ4tt-NWD/view?usp=sharing" target="_blank" class="btn btn-custom w-100 py-2">
+                            <i class="fas fa-file-pdf me-2"></i>閱讀完整報告
                         </a>
-
                     </div>
-
                 </div>
-    
              </div>
 
-            <div class="col-md-6 mb-4">
-
-                <div class="card shadow-sm h-100 p-3">
-
-                    <div class="card-body text-center">
-
-                        <h4 class="mb-3">江語柔、王紫琪、陳智芳</h4>
-
-                        <a href="https://drive.google.com/file/d/1UZyEc_Ljo6FB9RonrorhVdz556zD7jFW/view?usp=sharing" 
-
-                           target="_blank" 
-
-                           class="btn btn-outline-primary w-100 py-2">
-
-                         台灣社會如何爭論代理孕母？ 公共論述的集體想像：從 Threads 出發
-
+            <div class="col-md-6 mb-2">
+                <div class="project-card h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="student-names">
+                            <i class="fas fa-users"></i> 江語柔、王紫琪、陳智芳
+                        </div>
+                        <h5 class="card-title mb-4 flex-grow-1">台灣社會如何爭論代理孕母？ 公共論述的集體想像：從 Threads 出發</h5>
+                        <a href="https://drive.google.com/file/d/1UZyEc_Ljo6FB9RonrorhVdz556zD7jFW/view?usp=sharing" target="_blank" class="btn btn-custom w-100 py-2">
+                            <i class="fas fa-file-pdf me-2"></i>閱讀完整報告
                         </a>
-
                     </div>
-
                 </div>
-    
              </div>
-            <div class="col-md-6 mb-4">
-
-                <div class="card shadow-sm h-100 p-3">
-
-                    <div class="card-body text-center">
-
-                        <h4 class="mb-3">丁翠鈺、冉志杰、劉宜宸</h4>
-
-                        <a href="https://drive.google.com/file/d/1k9GO8sejQGvpGOTAH0StJNRWan0ZFhwM/view?usp=sharing" 
-
-                           target="_blank" 
-
-                           class="btn btn-outline-primary w-100 py-2">
-
-                         從「工具」到「策略」的焦慮與狂歡：臺灣在生成式AI崛起後的新聞框架轉變
-
+            
+            <div class="col-md-6 mb-2">
+                <div class="project-card h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="student-names">
+                            <i class="fas fa-users"></i> 丁翠鈺、冉志杰、劉宜宸
+                        </div>
+                        <h5 class="card-title mb-4 flex-grow-1">從「工具」到「策略」的焦慮與狂歡：臺灣在生成式AI崛起後的新聞框架轉變</h5>
+                        <a href="https://drive.google.com/file/d/1k9GO8sejQGvpGOTAH0StJNRWan0ZFhwM/view?usp=sharing" target="_blank" class="btn btn-custom w-100 py-2">
+                            <i class="fas fa-file-pdf me-2"></i>閱讀完整報告
                         </a>
-
                     </div>
-
                 </div>
-    
              </div>
-            <div class="col-md-6 mb-4">
-
-                <div class="card shadow-sm h-100 p-3">
-
-                    <div class="card-body text-center">
-
-                        <h4 class="mb-3">魏子怡、陳冠承</h4>
-
-                        <a href="https://drive.google.com/file/d/1MLHWJvq2V6Nm0ANQfd1r4oNEwyTQrysX/view?usp=sharing" 
-
-                           target="_blank" 
-
-                           class="btn btn-outline-primary w-100 py-2">
-
-                        香港大火輿情分析：港台媒體報導框架與公眾情緒的平行世界 以《大公報》、《聯合電子報》為例
-
+            
+            <div class="col-md-6 mb-2">
+                <div class="project-card h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="student-names">
+                            <i class="fas fa-users"></i> 魏子怡、陳冠承
+                        </div>
+                        <h5 class="card-title mb-4 flex-grow-1">香港大火輿情分析：港台媒體報導框架與公眾情緒的平行世界 以《大公報》、《聯合電子報》為例</h5>
+                        <a href="https://drive.google.com/file/d/1MLHWJvq2V6Nm0ANQfd1r4oNEwyTQrysX/view?usp=sharing" target="_blank" class="btn btn-custom w-100 py-2">
+                            <i class="fas fa-file-pdf me-2"></i>閱讀完整報告
                         </a>
-
                     </div>
-
                 </div>
-    
              </div>
-            <div class="col-md-6 mb-4">
-
-                <div class="card shadow-sm h-100 p-3">
-
-                    <div class="card-body text-center">
-
-                        <h4 class="mb-3">王翊安、楊詠淳、陳彥寧</h4>
-
-                        <a href="https://drive.google.com/file/d/1b10HwHiPJQn92EGTnGUuLPX3sEy58_gU/view?usp=sharing" 
-
-                           target="_blank" 
-
-                           class="btn btn-outline-primary w-100 py-2">
-
-                       2025 淡水大停水事件:以大數據視角探討社群輿情與傳統媒體如何共振
-
+            
+            <div class="col-md-6 mb-2">
+                <div class="project-card h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="student-names">
+                            <i class="fas fa-users"></i> 王翊安、楊詠淳、陳彥寧
+                        </div>
+                        <h5 class="card-title mb-4 flex-grow-1">2025 淡水大停水事件:以大數據視角探討社群輿情與傳統媒體如何共振</h5>
+                        <a href="https://drive.google.com/file/d/1b10HwHiPJQn92EGTnGUuLPX3sEy58_gU/view?usp=sharing" target="_blank" class="btn btn-custom w-100 py-2">
+                            <i class="fas fa-file-pdf me-2"></i>閱讀完整報告
                         </a>
-
                     </div>
-
                 </div>
-    
              </div>
 
+        </div> </div> <footer>
+        <div class="container text-center">
+            <p>&copy; 2025 大數據與資訊視覺化課程成果展</p>
+            <small style="opacity: 0.5;">Designed with Bootstrap 5 & FontAwesome</small>
+        </div>
+    </footer>
 
-
-
-    </div>
-
-
-
-    <div class="text-center py-4 text-muted">
-
-        &copy; 大數據與資訊視覺化
-
-    </div>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>
